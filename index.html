@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q3 Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<style>
+    .navbar {
+    background-color: #8ff2f7;
+    }
+
+    #logo {
+    width: 60px;
+    height: 40px;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #e0f2ff;
+        color: #03045e;
+    }
+
+    .navbar {
+        background-color: #03045e !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-nav .nav-link {
+        color: #ffffff !important;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #90e0ef !important;
+    }
+
+    .btn {
+        border-radius: 25px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-warning {
+        background-color: #0077b6 !important;
+        border: none;
+        color: white !important;
+    }
+
+    .btn-warning:hover {
+        background-color: #023e8a !important;
+    }
+
+    .btn-outline-success {
+        border-color: #0077b6;
+        color: #0077b6;
+    }
+
+    .btn-outline-success:hover {
+        background-color: #0077b6;
+        color: #ffffff;
+    }
+
+    .btn-outline-primary {
+        border-color: #00b4d8;
+        color: #00b4d8;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #00b4d8;
+        color: #ffffff;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 2px solid #0077b6;
+    }
+
+    .form-control:focus {
+        border-color: #00b4d8;
+        box-shadow: 0 0 8px rgba(0, 180, 216, 0.5);
+    }
+
+    h2 {
+        font-size: 2rem;
+        text-transform: uppercase;
+        border-bottom: 2px solid #0077b6;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    #logo {
+        width: 60px;
+        height: 40px;
+    }
+
+    #DisplayAns {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #0077b6;
+    }
+
+    .text-center {
+        padding: 20px;
+        background-color: #03045e;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .fa {
+        font-size: 24px;
+        color: #0077b6;
+        margin: 10px;
+        transition: transform 0.3s;
+    }
+
+    .fa:hover {
+        transform: scale(1.2);
+        color: #023e8a;
+    }
+</style>
+<nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #03045e;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img id="logo" src="http://clipart-library.com/images_k/silhouette-train/silhouette-train-15.png"></a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto" style="background-color: white;">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sched">Train Schedule</a></li>
+                <li class="nav-item"><a class="nav-link" href="#help">Help</a></li>
+            </ul>
+            <form class="d-flex" action="index.html">
+                <input class="form-control" type="text" placeholder="Search…">
+                <button class="btn btn-warning" style="background-color: #0077b6; " type="button">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img id="map" src="map.jpg" class="img-fluid">
+        </div>
+        <div class="col-md-4">
+            <label for="leavingFrom">LEAVING FROM:</label>
+            <select class="form-control" id="leavingFrom">
+                <option value="0">Choose a station...</option>
+                <option value="0">Santolan</option>
+                <option value="1">Katipunan</option>
+                <option value="2">Anonas</option>
+                <option value="3">Cubao</option>
+                <option value="4">Betty Go-Belmonte</option>
+                <option value="5">Gilmore</option>
+                <option value="6">J. Ruiz</option>
+                <option value="7">V. Mapa</option>
+                <option value="8">Pureza</option>
+                <option value="9">Legarda</option>
+                <option value="10">Recto</option>
+            </select>
+            <label for="goingTo">GOING TO:</label>
+            <select class="form-control" id="goingTo">
+                <option value="0">Choose a station...</option>
+                <option value="0">Santolan</option>
+                <option value="1">Katipunan</option>
+                <option value="2">Anonas</option>
+                <option value="3">Cubao</option>
+                <option value="4">Betty Go-Belmonte</option>
+                <option value="5">Gilmore</option>
+                <option value="6">J. Ruiz</option>
+                <option value="7">V. Mapa</option>
+                <option value="8">Pureza</option>
+                <option value="9">Legarda</option>
+                <option value="10">Recto</option>
+            </select>
+            <button onclick="calculateFare()" class="btn btn-outline-success">Regular Fare</button>
+            <button onclick="discountFare()" class="btn btn-outline-primary">Discounted Fare</button>
+            <img id="card" src="https://mrt3.com/images/SINGLE.png" class="img-fluid">
+        </div>
+        <div class="col-md-4 text-center">
+            <h2>Ticket Price:</h2>
+            <p id="DisplayAns"></p>
+            <img src="price.jpg">
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="text-center">
+    <h2 id='sched'>Train Schedule</h2>
+    <p>The LRT-2 train schedule remains fairly consistent, except when there are technical issues.</p>
+    <img src="sched.jpg" id="trainsched" class="img-fluid">
+</div>
+
+<hr>
+
+<div class="container">
+    <h2>Leave a Comment</h2>
+    <p>We value your feedback. Talk to us.</p>
+    <form action="index.html">
+        <label for="comment">Feedback<span style="color:red;">*</span></label>
+        <textarea id="comment" class="form-control" placeholder="Type here..." required></textarea>
+        <label for="name">Name<span style="color:red;">*</span></label>
+        <input type="text" class="form-control" required>
+        <label for="Email">Email<span style="color:red;">*</span></label>
+        <input type="email" class="form-control" required>
+        <button type="submit" class="btn btn-warning" style="background-color: #0077b6;"onclick="message()">Submit Feedback</button>
+    </form>
+</div>
+
+<hr>
+
+<div class="text-center">
+    <h2>Help</h2>
+    <p>Contact us or just scream! We can hear you.</p>
+    <a href="www.facebook.com" class="fa fa-facebook"></a>
+    <a href="www.instagram.com" class="fa fa-instagram"></a>
+    <p><b>Our Office:</b> <i>404 Nowhere Street, Barangay Walang Kanto</i></p>
+    <p>&copy; 2024 Catam, Miguel, Medina</p>
+</div>
+
+<script>
+function calculateFare(){
+    let leavingFrom = document.getElementById("leavingFrom").value;
+    let goingTo = document.getElementById("goingTo").value;
+    let basefare = 13;
+    let fare = (goingTo - leavingFrom) + basefare;
+    document.getElementById("DisplayAns").innerHTML = fare + ".00";
+}
+
+function discountFare(){
+    let leavingFrom = document.getElementById("leavingFrom").value;
+    let goingTo = document.getElementById("goingTo").value;
+    let basefare = 13;
+    let fare = 0.80 * ((goingTo - leavingFrom) + basefare);
+    document.getElementById("DisplayAns").innerHTML = fare.toFixed(2);
+}
+
+function message(){
+    alert("Your feedback has been submitted. Thank you!");
+}
+</script>
+
+</body>
+</html>
